@@ -58,7 +58,7 @@ doctrine:
                     FOSUserBundle:
                         mapping:              true
                         type:                 xml
-                        dir:                  Resources\config\doctrine
+                        dir:                  Resources/config/doctrine
                         alias:                ~
                         prefix:               FOS\UserBundle\Entity
                         is_bundle:            true
