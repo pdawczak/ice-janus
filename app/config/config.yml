@@ -167,4 +167,4 @@ ice_minerva_client:
 ice_mercury_client:
     username: %mercury_api_username%
     password: %mercury_api_password%
-    gateway_secret: ~
+    gateway_secret: secret
