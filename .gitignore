@@ -7,3 +7,6 @@
 /bin/
 /app/config/parameters.yml
 /app/config/parameters/parameters_*
+/web/config.php
+/app/SymfonyRequirements.php
+/app/check.php
