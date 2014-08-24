@@ -63,7 +63,10 @@ class ClientContext extends MinkContext
             case 'json':
 
                 $driver->getClient()->request(
-                    strtoupper($method), $uri, array(), array(), array('HTTP_CONTENT_TYPE' => 'application/json'),
+                    strtoupper($method), $uri, array(), array(), array(
+                        'CONTENT_TYPE' => 'application/json',
+                        'HTTP_CONTENT_TYPE' => 'application/json'
+                    ),
                     file_get_contents($filePath)
                 );
 
