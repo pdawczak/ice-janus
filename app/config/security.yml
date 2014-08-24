@@ -23,6 +23,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                check_path: /fos_user/login_check
             logout:       true
             anonymous:    true
         user_authenticate:

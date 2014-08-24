@@ -38,7 +38,7 @@ class Username
      * @ORM\Id()
      * @ORM\Column(name="sequence", type="integer")
      *
-     * @Assert\Min(limit="1")
+     * @Assert\Range(min="1")
      */
     private $sequence;
 
