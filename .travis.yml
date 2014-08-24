@@ -7,11 +7,11 @@ language: php
 # php tag
 php:
  - 5.4
- - hhvm
 
 install:
  - mv app/config/parameters.yml.dist app/config/parameters.yml
  - composer self-update
  - composer install
+ - php app/console cache:clear --env=test
 
 script: bin/behat
