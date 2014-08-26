@@ -69,13 +69,6 @@ doctrine:
                         alias:                ~
                         prefix:               Ice\ExternalUserBundle\Entity
                         is_bundle:            true
-                    IceUsernameGeneratorBundle:
-                        mapping:              true
-                        type:                 annotation
-                        dir:                  Entity
-                        alias:                ~
-                        prefix:               Ice\UsernameGeneratorBundle\Entity
-                        is_bundle:            true
                     IceMailerBundle:
                         mapping:              true
                         type:                 annotation

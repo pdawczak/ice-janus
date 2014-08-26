@@ -1,8 +1,8 @@
 <?php
 
-namespace Ice\UsernameGeneratorBundle\Tests;
+namespace Ice\ExternalUserBundle\Tests\Service;
 
-use Ice\UsernameGeneratorBundle\UsernameGenerator;
+use Ice\ExternalUserBundle\Service\UsernameGenerator;
 
 use Symfony\Component\Validator\Validation;
 
@@ -22,7 +22,7 @@ class UsernameGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $registry = $this->getMock('Symfony\\Bridge\\Doctrine\\RegistryInterface');
         $em = $this->getMock('Doctrine\\ORM\\EntityManager', array(), array(), '', false);
-        $repository = $this->getMock('Ice\\UsernameGeneratorBundle\\Entity\\UsernameRepository', array(), array(), '', false);
+        $repository = $this->getMock('Ice\\ExternalUserBundle\\Entity\\UsernameRepository', array(), array(), '', false);
         $this->generator = new UsernameGenerator($registry, $em, $repository);
 
         $this->validator = Validation::createValidatorBuilder()->enableAnnotationMapping()->getValidator();
