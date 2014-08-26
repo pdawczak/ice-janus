@@ -1,6 +1,6 @@
 <?php
 
-namespace Ice\UsernameGeneratorBundle\Entity;
+namespace Ice\ExternalUserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

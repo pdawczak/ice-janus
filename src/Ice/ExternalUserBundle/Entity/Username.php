@@ -1,6 +1,6 @@
 <?php
 
-namespace Ice\UsernameGeneratorBundle\Entity;
+namespace Ice\ExternalUserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,10 +11,10 @@ use JMS\Serializer\Annotation\SerializedName,
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ice\UsernameGeneratorBundle\Entity\Username
+ * Ice\ExternalUserBundle\Entity\Username
  *
  * @ORM\Table(name="username")
- * @ORM\Entity(repositoryClass="Ice\UsernameGeneratorBundle\Entity\UsernameRepository")
+ * @ORM\Entity(repositoryClass="Ice\ExternalUserBundle\Entity\UsernameRepository")
  * @ORM\HasLifecycleCallbacks()
  *
  * @ExclusionPolicy("ALL")

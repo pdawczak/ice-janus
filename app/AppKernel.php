@@ -27,7 +27,6 @@ class AppKernel extends Kernel
             new \JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new Ice\UsernameGeneratorBundle\IceUsernameGeneratorBundle(),
             new Ice\MinervaClientBundle\IceMinervaClientBundle(),
             new Ice\VeritasClientBundle\IceVeritasClientBundle(),
             new Ice\MercuryClientBundle\IceMercuryClientBundle(),

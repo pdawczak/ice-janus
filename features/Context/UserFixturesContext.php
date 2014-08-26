@@ -36,7 +36,7 @@ class UserFixturesContext extends BehatContext implements KernelAwareInterface
             );
 
             preg_match('#(\w+)(\d+)#', $row['username'], $usernameParts);
-            $fixtures['\Ice\UsernameGeneratorBundle\Entity\Username']['username:' . $row['username']] = array(
+            $fixtures['\Ice\ExternalUserBundle\Entity\Username']['username:' . $row['username']] = array(
                 'generatedUsername' => $row['username'],
                 'initials' => $usernameParts[1],
                 'sequence' => intval($usernameParts[2]),

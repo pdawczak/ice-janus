@@ -1,13 +1,13 @@
 <?php
 
-namespace Ice\UsernameGeneratorBundle;
+namespace Ice\ExternalUserBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-use Ice\UsernameGeneratorBundle\Entity\UsernameRepository,
-    Ice\UsernameGeneratorBundle\Entity\Username;
+use Ice\ExternalUserBundle\Entity\UsernameRepository,
+    Ice\ExternalUserBundle\Entity\Username;
 
 class UsernameGenerator
 {

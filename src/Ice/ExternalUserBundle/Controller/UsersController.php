@@ -223,7 +223,7 @@ class UsersController extends FOSRestController
         if ($form->isValid()) {
             // Only generate a username on the original registration
             if ($this->getRequest()->isMethod('POST')) {
-                /** @var $generator \Ice\UsernameGeneratorBundle\UsernameGenerator */
+                /** @var $generator \Ice\ExternalUserBundle\Service\UsernameGenerator */
                 $generator = $this->get('ice_username.generator');
                 $username = $generator->getUsernameForInitials($user->getInitials());
 
