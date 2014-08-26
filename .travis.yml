@@ -14,5 +14,6 @@ install:
  - composer self-update
  - composer install
  - php app/console cache:clear --env=test
+ - mkdir -p shippable/testresults
 
-script: bin/behat
+script: bin/behat --format=junit --out shippable/testresults
