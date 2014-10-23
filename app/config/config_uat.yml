@@ -19,3 +19,7 @@ ice_mercury_client:
 #IceVeritasClient configuration
 ice_veritas_client:
     base_url: https://veritas.uat.ice.internal.admin.cam.ac.uk/api/
+
+#Ice CDN
+ice_mailer:
+    cdn_base_url: https://www.ice.cam.ac.uk/institute-media/ctms/pdfs/

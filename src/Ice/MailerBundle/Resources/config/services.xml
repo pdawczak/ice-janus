@@ -21,6 +21,10 @@
             <call method="setSwiftMailer">
                 <argument type="service" id="mailer"/>
             </call>
+            <call method="setFileRepository">
+                <argument type="service" id="ice_mailer.file_repository"/>
+            </call>
+
         </service>
         <service id="ice_mailer.template_manager" class="Ice\MailerBundle\Template\Manager" public="true">
             <call method="setTemplating">
@@ -50,6 +54,14 @@
 
         <service id="ice_mailer.account_information_precompiler" class="Ice\MailerBundle\PreCompiler\AccountInformation">
             <tag name="kernel.event_listener" event="ice_mailer.pre_compile_mail" method="onPreCompile" />
+        </service>
+
+        <service id="ice_mailer.attachment_information_precompiler" class="Ice\MailerBundle\PreCompiler\AttachmentInformation">
+            <tag name="kernel.event_listener" event="ice_mailer.pre_compile_mail" method="onPreCompile" />
+        </service>
+
+        <service id="ice_mailer.file_repository" class="Ice\MailerBundle\Attachment\FileCDNRepository" public="true">
+            <argument>%ice_mailer.cdn_base_url%</argument>
         </service>
     </services>
 

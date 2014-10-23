@@ -2,6 +2,9 @@
 
 namespace Ice\MailerBundle\Service;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Ice\MailerBundle\Attachment\Attachment;
+use Ice\MailerBundle\Attachment\FileRepository;
 use Ice\MailerBundle\Entity\Mail;
 use Ice\MailerBundle\Entity\MailRequest;
 use Ice\MailerBundle\Event\MailerEvents;
@@ -40,6 +43,11 @@ class MailerService implements EventSubscriberInterface
      * @var \Symfony\Component\HttpKernel\Log\LoggerInterface
      */
     private $logger;
+
+    /**
+     * @var FileRepository
+     */
+    private $fileRepository;
 
     public function __construct(LoggerInterface $logger)
     {
@@ -139,6 +147,7 @@ class MailerService implements EventSubscriberInterface
     {
         $manager = $this->getTemplateManager();
 
+        /** @var Mail $mail */
         foreach ($mailRequest->getMails() as $mail) {
 
             $template = $manager->getTemplateByMail($mail);
@@ -169,6 +178,7 @@ class MailerService implements EventSubscriberInterface
     public function sendCompiledMail(Mail $mail)
     {
         if($mail->getRecipient()->getEmail()) {
+            /** @var \Swift_Mime_Message $message */
             $message = \Swift_Message::newInstance()
                 ->setSubject($mail->getCompiledSubject())
                 ->setFrom($mail->getSendersByArray())
@@ -183,6 +193,9 @@ class MailerService implements EventSubscriberInterface
                     'text/html'
                 )
             ;
+
+            $message = $this->attachFiles($message, $mail->getAttachments());
+
             if ($this->getSwiftMailer()->send($message)) {
                $mail->setSent(new \DateTime());
             }
@@ -227,5 +240,46 @@ class MailerService implements EventSubscriberInterface
     public function getEventDispatcher()
     {
         return $this->eventDispatcher;
+    }
+
+    /**
+     * @return FileRepository
+     */
+    public function getFileRepository()
+    {
+        return $this->fileRepository;
+    }
+
+    /**
+     * @param FileRepository $fileRepository
+     */
+    public function setFileRepository($fileRepository)
+    {
+        $this->fileRepository = $fileRepository;
+    }
+
+    /**
+     * @param \Swift_Mime_Message $message
+     * @param ArrayCollection $attachments
+     */
+    private function attachFiles($message, $attachments)
+    {
+        if ($attachments->count()) {
+            /**
+             * @var int $i
+             * @var Attachment $attachment
+             */
+            foreach ($attachments as $i => $attachment) {
+
+                $file = $this->getFileRepository()->getFile($attachment);
+
+                $message->attach(
+                    $file,
+                    $attachment->getFilename()
+                );
+            }
+        }
+
+        return $message;
     }
 }
