@@ -3,7 +3,8 @@ namespace Ice\MailerBundle\Attachment;
 
 use Ice\MailerBundle\Attachment\Attachment;
 
-interface FileRepository {
+interface FileRepository
+{
 
     /**
      * @param Attachment $attachment
@@ -12,4 +13,4 @@ interface FileRepository {
      * @throws AttachmentException
      */
     public function getFile(Attachment $attachment);
-} 
+}

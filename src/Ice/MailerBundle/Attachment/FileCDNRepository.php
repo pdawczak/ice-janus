@@ -1,7 +1,8 @@
 <?php
 namespace Ice\MailerBundle\Attachment;
 
-class FileCDNRepository implements FileRepository {
+class FileCDNRepository implements FileRepository
+{
 
     private $baseUrl;
 
@@ -44,4 +45,4 @@ class FileCDNRepository implements FileRepository {
     }
 
 
-} 
+}

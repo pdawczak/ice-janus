@@ -3,7 +3,8 @@
 namespace Ice\MailerBundle\Attachment;
 
 
-class AttachmentFactory {
+class AttachmentFactory
+{
 
     /**
      * @param array $params
@@ -32,4 +33,4 @@ class AttachmentFactory {
         }
     }
 
-} 
+}
