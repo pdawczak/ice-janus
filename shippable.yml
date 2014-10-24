@@ -1,0 +1,24 @@
+# Build Environment
+build_environment: Ubuntu 14.04
+
+# language setting
+language: php
+
+# php tag
+php:
+ - 5.4
+ - 5.5
+
+# Contains a value for GITHUB_OAUTH
+env:
+- secure: 0NPLvj5uFzJG5P3xZpG9j/5RCKS0I1LjA1EQA/ncHT8byu4PKC8iahlKjAUf3+wFM6CdFttbB1ImkBwkARUMY4PgWNHQuXQnQOakJNrLFUTeL5CXzy7e19AVGSly58BHJEu/bdH1a/Au1HBDqeuB6g+GR9c5rNbt//c9HGJwg8oBlfN8oUvFy6m3ItOY0dKAdUrKbVDeNgdS/4aYpjG0bt9Tw2cq8E+GzKsH2cY4xx3J1fZtDXORz/q6rfccM+HgKrL39Vbv3zcVRuW3anO88yrtiV+D1zWl5vDHuW9WXxd7QLry2afMvbXOpl1E2ifwoKK1U9tOUF8pmvt7/GxZMw==
+
+install:
+ - mv app/config/parameters.yml.dist app/config/parameters.yml
+ - composer self-update
+ - composer config github-oauth.github.com $GITHUB_OAUTH
+ - composer install
+ - php app/console cache:clear --env=test
+ - mkdir -p shippable/testresults
+
+script: bin/behat --format=junit --out shippable/testresults
