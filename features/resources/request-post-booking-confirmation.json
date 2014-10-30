@@ -9,9 +9,6 @@
     "booking": {
         "bookingReference": "IB-TEST",
         "orderReference": "IO-TEST"
-    },
-    "attachments": [
-        {"key":{"hash":"123"}, "origin": "cdn", "filename":"test.pdf"}
-    ]
+    }
   }
 }
