@@ -27,7 +27,7 @@ class AttachmentInformation
         /** @var \Ice\MailerBundle\Entity\Mail $mail */
         $mail = $event->getMail();
 
-        if ($vars['attachments']) {
+        if (isset($vars['attachments']) && count($vars['attachments'])) {
             $attachmentsInstances = [];
             foreach ($vars['attachments'] as $i => $attach) {
 
