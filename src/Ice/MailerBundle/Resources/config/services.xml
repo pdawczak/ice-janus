@@ -60,7 +60,7 @@
             <tag name="kernel.event_listener" event="ice_mailer.pre_compile_mail" method="onPreCompile" />
         </service>
 
-        <service id="ice_mailer.file_repository" class="Ice\MailerBundle\Attachment\FileCDNRepository" public="true">
+        <service id="ice_mailer.file_repository" class="%ice_mailer.files.file_repository.class%">
             <argument>%ice_mailer.cdn_base_url%</argument>
         </service>
     </services>

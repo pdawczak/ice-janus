@@ -26,3 +26,14 @@ Feature: Mailer
     """
     We are pleased to confirm your place on the course below
     """
+
+  @mink:symfony2
+  Scenario: Send a booking confirmation email with attachments
+    When I post "resources/request-post-booking-confirmation-with-attachments.json" as "json" to "/api/mail"
+    Then the response status code should be 200
+    And I should get an email on "rh389@my-email.ac.uk" with:
+    """
+    We are pleased to confirm your place on the course below
+    """
+    And I should get an email on "rh389@my-email.ac.uk" containing 2 attachments
+

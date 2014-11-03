@@ -194,7 +194,8 @@ class MailerService implements EventSubscriberInterface
                 )
             ;
 
-            $message = $this->attachFiles($message, $mail->getAttachments());
+            if ($mail->getAttachments()->count())
+                $message = $this->attachFiles($message, $mail->getAttachments());
 
             if ($this->getSwiftMailer()->send($message)) {
                $mail->setSent(new \DateTime());

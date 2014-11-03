@@ -45,3 +45,6 @@ doctrine:
                         alias:                ~
                         prefix:               Ice\MinervaClientBundle\Entity
                         is_bundle:            true
+
+ice_mailer:
+    file_repository_type: test
