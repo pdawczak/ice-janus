@@ -26,5 +26,14 @@ class IceMailerExtension extends Extension
         $loader->load('services.xml');
         $container->setParameter('ice_mailer.cdn_base_url', $config['cdn_base_url']);
 
+        $fileRepositoryClass = 'Ice\MailerBundle\Attachment\FileCDNRepository';
+        if ($config['file_repository_type'] && $config['file_repository_type'] == "test")
+            $fileRepositoryClass = 'Ice\MailerBundle\Tests\Attachment\FileCDNRepositoryMock';
+
+        $container->setParameter(
+            'ice_mailer.files.file_repository.class',
+            $fileRepositoryClass
+        );
+
     }
 }

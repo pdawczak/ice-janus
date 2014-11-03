@@ -44,4 +44,5 @@ ice_veritas_client:
 
 #Ice CDN
 ice_mailer:
+    file_repository_type: default
     cdn_base_url: https://www.ice.cam.ac.uk/institute-media/ctms/pdfs/

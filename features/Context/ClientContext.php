@@ -204,22 +204,10 @@ class ClientContext extends MinkContext
         $collector = $profile->getCollector('swiftmailer');
 
         foreach ($collector->getMessages() as $message) {
-            // Checking the recipient email and the X-Swift-To
-            // header to handle the RedirectingPlugin.
+
             // If the recipient is not the expected one, check
             // the next mail.
-            $correctRecipient = array_key_exists(
-                $email, $message->getTo()
-            );
-            $headers = $message->getHeaders();
-            $correctXToHeader = false;
-            if ($headers->has('X-Swift-To')) {
-                $correctXToHeader = array_key_exists($email,
-                    $headers->get('X-Swift-To')->getFieldBodyModel()
-                );
-            }
-
-            if (!$correctRecipient && !$correctXToHeader) {
+            if (!$this->emailMessageHasRecipient($message, $email)) {
                 continue;
             }
 
@@ -241,5 +229,73 @@ class ClientContext extends MinkContext
     public function iShouldGetAnEmail($email)
     {
         $this->iShouldGetAnEmailWithText($email, new PyStringNode(""));
+    }
+
+    /**
+     * @Given /^I should get an email on "(?P<email>[^"]+)" containing (\d+) attachments/
+     */
+    public function iShouldGetAnEmailWithAttachments($email, $attachmentCount)
+    {
+        $error = sprintf('No message sent to "%s"', $email);
+        $profile = $this->getSymfonyProfile();
+        $collector = $profile->getCollector('swiftmailer');
+
+        /** @var Swift_Message $message */
+        foreach ($collector->getMessages() as $message) {
+
+            if ($this->emailMessageHasRecipient($message, $email)) {
+
+                $messageAttachmentNumber = $this->getEmailMessageAttachmentsCount($message);
+                $error = sprintf(
+                    'Expected "%d" attachments, %d received',
+                    $attachmentCount,
+                    $messageAttachmentNumber
+                );
+
+                if ($attachmentCount == $messageAttachmentNumber) {
+                    return;
+                }
+            }
+
+        }
+        throw new ExpectationException($error, $this->getSession());
+    }
+
+    /**
+     * @param \Swift_Message $message
+     * @param string $recipient
+     * @return bool
+     */
+    private function emailMessageHasRecipient($message, $recipient)
+    {
+        // Checking the recipient email and the X-Swift-To
+        // header to handle the RedirectingPlugin.
+        $correctRecipient = array_key_exists(
+            $recipient, $message->getTo()
+        );
+
+        $headers = $message->getHeaders();
+        $correctXToHeader = false;
+        if ($headers->has('X-Swift-To')) {
+            $correctXToHeader = array_key_exists($recipient,
+                $headers->get('X-Swift-To')->getFieldBodyModel()
+            );
+        }
+
+        return ($correctRecipient || $correctXToHeader);
+    }
+
+    /**
+     * @param \Swift_Message $message
+     */
+    private function getEmailMessageAttachmentsCount($message)
+    {
+        $count = 0;
+        foreach ($message->getChildren() as $child) {
+            if ($child instanceof \Swift_Attachment) {
+                ++$count;
+            }
+        }
+        return $count;
     }
 }

@@ -29,6 +29,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('cdn_base_url')
                     ->info('Base URL for the attachments CDN.')
                 ->end()
+                ->scalarNode('file_repository_type')
+                    ->info('Class in charge of provide attachments files')
+                ->end()
             ->end();
 
         return $treeBuilder;
