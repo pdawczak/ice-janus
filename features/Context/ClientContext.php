@@ -287,6 +287,7 @@ class ClientContext extends MinkContext
 
     /**
      * @param \Swift_Message $message
+     * @return int
      */
     private function getEmailMessageAttachmentsCount($message)
     {
