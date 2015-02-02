@@ -134,7 +134,8 @@ class BuiltInServerContext extends BehatContext
 
             return $windowTitle;
         } else {
-            $command = sprintf('php -S %s:%d -t %s >/dev/null 2>&1 & echo $!',
+            $command = sprintf('%s -S %s:%d -t %s >/dev/null 2>&1 & echo $!',
+                PHP_BINARY,
                 $host,
                 $port,
                 $documentRoot);

@@ -1,0 +1,18 @@
+{
+  "to": "rh1",
+  "template_name": "BookingConfirmation",
+  "vars": {
+    "academicInformation": {
+      "courseId": 2892,
+      "iceId": "rh1"
+    },
+    "booking": {
+        "bookingReference": "IB-TEST",
+        "orderReference": "IO-TEST"
+    },
+    "attachments": [
+        {"key":{"hash":"123"}, "origin": "cdn", "filename":"test.pdf"},
+        {"key":{"hash":"456"}, "origin": "cdn", "filename":"test2.pdf"}
+    ]
+  }
+}

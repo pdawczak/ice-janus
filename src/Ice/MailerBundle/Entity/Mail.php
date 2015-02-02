@@ -102,6 +102,11 @@ class Mail
     protected $bccRecipients;
 
     /**
+     * @var Attachment[] | ArrayCollection
+     */
+    protected $attachments;
+
+    /**
      * Initialise variables
      */
     function __construct()
@@ -110,6 +115,7 @@ class Mail
         $this->ccRecipients = new ArrayCollection();
         $this->bccRecipients = new ArrayCollection();
         $this->senders = new ArrayCollection();
+        $this->attachments = new ArrayCollection();
     }
 
     /**
@@ -499,5 +505,21 @@ class Mail
             $senders[$entity->getAddress()] = $entity->getName();
         }
         return $senders;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param ArrayCollection $attachments
+     */
+    public function setAttachments(ArrayCollection $attachments)
+    {
+        $this->attachments = $attachments;
     }
 }
