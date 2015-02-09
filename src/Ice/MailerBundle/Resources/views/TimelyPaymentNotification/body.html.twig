@@ -29,7 +29,7 @@
 <p>Dear {{ customerTitle }} {{ customerLastNames }},</p>
 
 <p>
-    Please be advised that the next instalment for your course is due on {{ at|date('d F Y') }} as per your payment plan. The amount of £{{ (amount / 100)|number_format(2, '.', ',') }} will be taken automatically from the card used to pay your most recent instalment.
+    Please be advised that the next instalment for your course is due on {{ at|date('d F Y') }} as per your payment plan. The amount of £{{ amount }} will be taken automatically from the card used to pay your most recent instalment.
 </p>
 
 <p>
