@@ -18,9 +18,9 @@ env:
 
 install:
  - mv app/config/parameters.yml.dist app/config/parameters.yml
- - composer.phar self-update
- - composer.phar config github-oauth.github.com $GITHUB_OAUTH -vvv
- - composer.phar install --prefer-dist
+ - composer self-update
+ - composer config github-oauth.github.com $GITHUB_OAUTH -vvv
+ - composer install --prefer-dist
  - php app/console cache:clear --env=test
  - mkdir -p shippable/testresults
 
