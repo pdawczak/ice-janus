@@ -33,7 +33,7 @@ GBP {{ (receivable.amount/100) | number_format(2, '.', '') }}{% if receivable.am
 
 {% set receivable = order.suborders|first.paymentGroup.receivables|first %}
 {% if 'ONLINE' == receivable.method %}
-Your payment will appear on your credit or debit card statement with the reference 'www.cam.ac.uk 01223 766733'.
+Your payment will appear on your credit or debit card statement with the reference 'www.cam.ac.uk 01223 766733'. Any outstanding payments will automatically be taken on the given due dates from the same credit/debit card as that used at the time of booking.
 {% endif %}
 
 Please note: You may receive this email sometime after your original booking, depending on when your payment is processed on our system.
