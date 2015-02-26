@@ -25,7 +25,7 @@ class TimelyPaymentNotification extends DefaultTemplate
     public function getBCC()
     {
         return [
-//            'ice.admissions@ice.cam.ac.uk' => 'ICE Admissions'
+            'ice.admissions@ice.cam.ac.uk' => 'ICE Admissions'
         ];
     }
 }
