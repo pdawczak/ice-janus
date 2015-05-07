@@ -12,6 +12,7 @@ use Ice\ExternalUserBundle\Entity\User,
 use Ice\ExternalUserBundle\Filter\UserFilterType;
 use Ice\ExternalUserBundle\Form\Type\SetDateOfBirthFormType;
 use Ice\ExternalUserBundle\Form\Type\SetEmailFormType;
+use Ice\ExternalUserBundle\Form\Type\SetEnabledFormType;
 use Ice\ExternalUserBundle\Form\Type\SetNameFormType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -334,6 +335,46 @@ class UsersController extends FOSRestController
         $form->bind($this->getRequest());
 
         if ($form->isValid()) {
+            /** @var $manager \FOS\UserBundle\Model\UserManager */
+            $manager = $this->get('fos_user.user_manager');
+            $manager->updateUser($user);
+            $manager->updateCanonicalFields($user);
+
+            return $this->view($user, 204);
+        }
+
+        return $this->view($form, 400);
+    }
+
+    /**
+     * @Route("api/users/{username}/enabled", name="set_enabled_user")
+     * @Method("PUT")
+     *
+     * @ApiDoc(
+     *   resource=true,
+     *   description="Set enabled status of an existing User",
+     *   input="Ice\ExternalUserBundle\Form\Type\SetEnabledFormType",
+     *   statusCodes={
+     *      204="Returned when User successfully updated",
+     *      400="Returned when there is a validation error"
+     *   }
+     * )
+     */
+    public function putUsersEnabledAction($username)
+    {
+        $user = $this->getUserManager()->findUserByUsernameOrEmail($username);
+
+        if (!$user) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this->createForm(new SetEnabledFormType(), $user);
+        $form->bind($this->getRequest());
+
+        $data = $this->getRequest()->request->all();
+
+        if ($form->isValid()) {
+            $user->setEnabled($data['enabled'] == 1);
             /** @var $manager \FOS\UserBundle\Model\UserManager */
             $manager = $this->get('fos_user.user_manager');
             $manager->updateUser($user);
