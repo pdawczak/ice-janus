@@ -43,40 +43,79 @@
 {% endif %}
 </table>
 
-{% if showSectionStudyingAtICE %}
-<h2>Studying at the Institute of Continuing Education (ICE)</h2>
-<p>
-    Please see <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students">our website</a> for information
-    regarding studying at ICE, including the Student Handbook which details important policies relating to your study.
-</p>
+{# Certificate or Diploma #}
+{% if course.level in [1, 2] %}
 
-{% endif %}
-{% if showSectionOnlineNextSteps %}
-    <h2>Next Steps</h2>
+    <h2>Studying at the Institute of Continuing Education (ICE)</h2>
     <p>
-        Access to your online course area will open on {{ course.startDate | date('F jS Y') }}. You will be sent instructions to this email
-        address on how to access your online course (including your username and password) shortly before this date
-        (normally the Friday before the course begins). If you have not received these instructions <strong>BY</strong>
-        {{ course.startDate | date('F jS Y') }} please contact the <a href="http://support.iceonline.cam.ac.uk">eLearning Helpdesk</a>.
+        Your course specification can be found under Downloads on the
+        <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students">web page for your course</a>.
+        This gives detailed information about course-content, assignments, teaching dates and reading lists.
+        Information regarding resources available to you can be found on our website
+        <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students">http://www.ice.cam.ac.uk/studying-with-us/information-for-students</a>
     </p>
 
-{% endif %}
-{% if courseMaterialsDelivery is defined %}
-<h2>Course materials</h2>
-{% if courseMaterialsDelivery == 'vle' %}
-<p>
-    Course materials will be posted on your online course space via our Virtual Learning Environment (VLE), and will be
-    made available to you from the course start date. Please note that there is no requirement to complete any reading
-    or coursework in advance of the start date.
-</p>
+    <h2>University cards</h2>
+    <p>
+        You will be eligible to carry a University card (
+        <a href="www.misd.admin.cam.ac.uk/services-and-support/university-card">www.misd.admin.cam.ac.uk/services-and-support/university-card</a>
+        ) which will also act as your library card. You have already decided whether you would like to email this to
+        <a href="mailto:studentsupport@ice.cam.ac.uk">studentsupport@ice.cam.ac.uk</a> or post it to the Registry,
+        Madingley Hall, Madingley, Cambridge, CB23 8AQ, please do so as soon as possible. Your card should be ready for
+        you to collect at your first face-to-face teaching session if you have supplied your photograph in good time.
+        You are required to return this card to the Registry at the Institute of Continuing Education when your studies
+        end or when the card expires.
+    </p>
+
+    <h2>Facilities for students with additional requirements</h2>
+    <p>
+        The Institute welcomes applications from disabled students, including those with unseen disabilities and
+        specific learning difficulties such as dyslexia, and makes every effort both to anticipate and to make
+        reasonable adjustments to meet the needs of disabled participants. A student may disclose a disability at any
+        point but, after the start of the course, support may take time to implement. For further information,
+        please visit our website at:
+        <a href="www.ice.cam.ac.uk/studying-with-us/information-for-students/students-with-additional-requirements">www.ice.cam.ac.uk/studying-with-us/information-for-students/students-with-additional-requirements</a>
+    </p>
+    {% endif %}
+
 {% else %}
-<p>
-    Course materials for this course will be e-mailed to you when available. Please contact us if you have not received these two weeks before the course start date.
-</p>
-<p>
-    If you are taking an undergraduate qualification, your course specification (handbook) can be found under Downloads on the <a href="{{ course.webUrl }}">web page for your course</a>. The course specification gives detailed information about course-content, assignments, teaching dates and reading lists as well as resources available to you.
-</p>
-{% endif %}
+
+    {% if showSectionStudyingAtICE %}
+    <h2>Studying at the Institute of Continuing Education (ICE)</h2>
+    <p>
+        Please see <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students">our website</a> for information
+        regarding studying at ICE, including the Student Handbook which details important policies relating to your study.
+    </p>
+
+    {% endif %}
+    {% if showSectionOnlineNextSteps %}
+        <h2>Next Steps</h2>
+        <p>
+            Access to your online course area will open on {{ course.startDate | date('F jS Y') }}. You will be sent instructions to this email
+            address on how to access your online course (including your username and password) shortly before this date
+            (normally the Friday before the course begins). If you have not received these instructions <strong>BY</strong>
+            {{ course.startDate | date('F jS Y') }} please contact the <a href="http://support.iceonline.cam.ac.uk">eLearning Helpdesk</a>.
+        </p>
+
+    {% endif %}
+    {% if courseMaterialsDelivery is defined %}
+    <h2>Course materials</h2>
+    {% if courseMaterialsDelivery == 'vle' %}
+    <p>
+        Course materials will be posted on your online course space via our Virtual Learning Environment (VLE), and will be
+        made available to you from the course start date. Please note that there is no requirement to complete any reading
+        or coursework in advance of the start date.
+    </p>
+    {% else %}
+    <p>
+        Course materials for this course will be e-mailed to you when available. Please contact us if you have not received these two weeks before the course start date.
+    </p>
+    <p>
+        If you are taking an undergraduate qualification, your course specification (handbook) can be found under Downloads on the <a href="{{ course.webUrl }}">web page for your course</a>. The course specification gives detailed information about course-content, assignments, teaching dates and reading lists as well as resources available to you.
+    </p>
+    {% endif %}
+    {% endif %}
+
 {% endif %}
 
 <h2>Contacting us</h2>
