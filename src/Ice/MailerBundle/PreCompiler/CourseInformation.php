@@ -59,6 +59,7 @@ class CourseInformation
                 'endDate' => $course->getEndDate(),
                 'isMst' => $course->getLevel()->isMst(),
                 'isOnline' => $course->getProgramme()->isOnline(),
+                'isCertsAndDips' => $course->getProgramme()->getId() == 25,
                 'attributes' => $course->getAttributes()
             ];
             $template->setVars($vars);
