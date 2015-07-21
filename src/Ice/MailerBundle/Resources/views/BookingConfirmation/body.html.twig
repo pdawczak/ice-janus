@@ -53,6 +53,15 @@
 {% endif %}
 {% if showSectionOnlineNextSteps %}
     <h2>Next Steps</h2>
+    <p>
+        Access to your online course area will open on {{ course.startDate | date('F jS Y') }}. You will be sent instructions to this email
+        address on how to access your online course (including your username and password) shortly before this date
+        (normally the Friday before the course begins). If you have not received these instructions <strong>BY</strong>
+        {{ course.startDate | date('F jS Y') }} please contact the <a href="http://support.iceonline.cam.ac.uk">eLearning Helpdesk</a>.
+    </p>
+{% endif %}
+{% if showSectionCertsAndDipsNextSteps %}
+    <h2>Next Steps</h2>
     <ul>
         <li><p>Send us a photo of yourself for your University Card. <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students">More information</a></p></li>
         <li><p>Familiarise yourself with your Course Specification found under Downloads on the <a href="{{ course.webUrl }}">web page for your course</a></p></li>
@@ -60,8 +69,7 @@
         <li><p>Add a date to your diary: The Certificates & Diplomas Welcome Afternoon. <a href="http://www.ice.cam.ac.uk/welcome-afternoon">More information</a></p></li>
         <li><p>Finally, you will be sent access to your virtual learning environment (VLE) a few weeks before your course start date. <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students/studying-on-award-bearing-courses/virtual-learning-environment">More information</a></p></li>
     </ul>
-
-{% endif %}
+{%  endif %}
 {% if courseMaterialsDelivery is defined %}
     <h2>Course materials</h2>
     {% if courseMaterialsDelivery == 'vle' %}

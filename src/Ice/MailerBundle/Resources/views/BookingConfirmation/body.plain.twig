@@ -19,6 +19,13 @@ Please see our website, http://www.ice.cam.ac.uk/studying-with-us/information-fo
 {% endif %}
 {% if showSectionOnlineNextSteps %}
 Next Steps
+Access to your online course area will open on {{ course.startDate | date('F jS Y') }}. You will be sent instructions to this email address on how to access your online course (including your username and password) shortly before this date (normally the Friday before the course begins). If you have not received these instructions BY {{ course.startDate | date('F jS Y') }} please contact the eLearning Helpdesk at:
+
+http://support.iceonline.cam.ac.uk
+    
+{% endif %}
+{% if showSectionCertsAndDipsNextSteps %}
+Next Steps
 * Send us a photo of yourself for your University Card. More information: http://www.ice.cam.ac.uk/studying-with-us/information-for-students
 * Familiarise yourself with your Course Specification found under Downloads on the web page for your course: {{  course.webUrl }}
 * Ensure you are in a safe and legal position to study in the UK, prior to the start of your course. More information: http://www.ice.cam.ac.uk/studying-with-us/international-students
