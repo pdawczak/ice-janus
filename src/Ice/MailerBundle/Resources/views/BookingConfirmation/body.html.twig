@@ -60,10 +60,10 @@
         {{ course.startDate | date('F jS Y') }} please contact the <a href="http://support.iceonline.cam.ac.uk">eLearning Helpdesk</a>.
     </p>
 {% endif %}
-{% if showSectionCertsAndDipsNextSteps %}
+{% if showSectionForCertsAndDips %}
     <h2>Next Steps</h2>
     <ul>
-        <li><p>Send us a photo of yourself for your University Card. <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students">More information</a></p></li>
+        <li><p>Send us a photo of yourself for your University Card. <a href="http://www.ice.cam.ac.uk/studying-with-us/information-for-students/studying-on-award-bearing-courses/student-benefits">More information</a></p></li>
         <li><p>Familiarise yourself with your Course Specification found under Downloads on the <a href="{{ course.webUrl }}">web page for your course</a></p></li>
         <li><p>Ensure you are in a safe and legal position to study in the UK, prior to the start of your course. <a href="http://www.ice.cam.ac.uk/studying-with-us/international-students">More information</a></p></li>
         <li><p>Add a date to your diary: The Certificates & Diplomas Welcome Afternoon. <a href="http://www.ice.cam.ac.uk/welcome-afternoon">More information</a></p></li>
@@ -71,17 +71,21 @@
     </ul>
 {%  endif %}
 {% if courseMaterialsDelivery is defined %}
-    <h2>Course materials</h2>
-    {% if courseMaterialsDelivery == 'vle' %}
-        <p>
-            Course materials will be posted on your online course space via our Virtual Learning Environment (VLE), and will be
-            made available to you from the course start date. Please note that there is no requirement to complete any reading
-            or coursework in advance of the start date.
-        </p>
+    {% if showSectionForCertsAndDips is defined and showSectionForCertsAndDips == false %}
+        {# Hackish way of not displaying #}
     {% else %}
-        <p>
-            Course materials for this course will be e-mailed to you when available. Please contact us if you have not received these two weeks before the course start date.
-        </p>
+        <h2>Course materials</h2>
+        {% if courseMaterialsDelivery == 'vle' %}
+            <p>
+                Course materials will be posted on your online course space via our Virtual Learning Environment (VLE), and will be
+                made available to you from the course start date. Please note that there is no requirement to complete any reading
+                or coursework in advance of the start date.
+            </p>
+        {% else %}
+            <p>
+                Course materials for this course will be e-mailed to you when available. Please contact us if you have not received these two weeks before the course start date.
+            </p>
+        {% endif %}
     {% endif %}
 {% endif %}
 

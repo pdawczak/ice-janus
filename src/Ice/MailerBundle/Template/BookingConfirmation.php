@@ -40,7 +40,7 @@ class BookingConfirmation extends DefaultTemplate
 
             $vars['showSectionStudyingAtICE'] = !($course['isMst'] || $course['isOnline']);
             $vars['showSectionOnlineNextSteps'] = $course['isOnline'];
-            $vars['showSectionCertsAndDipsNextSteps'] = $course['isCertsAndDips'];
+            $vars['showSectionForCertsAndDips'] = $course['isCertsAndDips'];
             if (!$course['isMst']) {
                 $vars['courseMaterialsDelivery'] = $course['isOnline'] ? 'vle' : 'email';
             }
