@@ -46,9 +46,15 @@ Course materials for this course will be e-mailed to you when available. Please 
 {% endif %}
 {% endif %}
 Contacting us
+{% if showSectionForCertsAndDips is defined and showSectionForCertsAndDips == true %}
 If you would like to contact us regarding your course, please contact the Academic Programme Manager: ug-awards@ice.cam.ac.uk
 
 For enquiries regarding this booking, please contact our Admissions Team on ice.admissions@ice.cam.ac.uk or +44 (0)1223 746262.
+{% elseif courseMaterialsDelivery is defined %}
+If you would like to contact us regarding this booking, please contact onlinecourses@ice.cam.ac.uk or +44 (0)1223 760852.
+{% else %}
+If you would like to contact us regarding this booking, please contact our Admissions Team on ice.admissions@ice.cam.ac.uk or +44 (0)1223 746262.
+{% endif %}
 
 
 

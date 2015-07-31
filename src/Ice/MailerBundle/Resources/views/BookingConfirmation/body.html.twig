@@ -90,11 +90,21 @@
 {% endif %}
 
 <h2>Contacting us</h2>
-<p>
-    If you would like to contact us regarding your course, please contact the Academic Programme Manager: <a href="mailto:ug-awards@ice.cam.ac.uk">ug-awards@ice.cam.ac.uk</a>.
-    <br>
-    For enquiries regarding this booking, please contact our Admissions Team on <a href="mailto:ice.admissions@ice.cam.ac.uk">ice.admissions@ice.cam.ac.uk</a> or +44 (0)1223 746262.
-</p>
+{% if showSectionForCertsAndDips is defined and showSectionForCertsAndDips == true %}
+    <p>
+        If you would like to contact us regarding your course, please contact the Academic Programme Manager: <a href="mailto:ug-awards@ice.cam.ac.uk">ug-awards@ice.cam.ac.uk</a>.
+        <br>
+        For enquiries regarding this booking, please contact our Admissions Team on <a href="mailto:ice.admissions@ice.cam.ac.uk">ice.admissions@ice.cam.ac.uk</a> or +44 (0)1223 746262.
+    </p>
+{% elseif courseMaterialsDelivery is defined %}
+    <p>
+        If you would like to contact us regarding this booking, please contact onlinecourses@ice.cam.ac.uk or +44 (0)1223 760852.
+    </p>
+{% else %}
+    <p>
+        If you would like to contact us regarding this booking, please contact our Admissions Team on ice.admissions@ice.cam.ac.uk or +44 (0)1223 746262.
+    </p>
+{% endif %}
 
 <div class="smallprint">
     For information on our terms and conditions please visit <a href="http://www.ice.cam.ac.uk/terms">http://www.ice.cam.ac.uk/terms</a><br>
